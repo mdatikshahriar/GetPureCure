@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GetPureCure</string>
+
+    <string-array name="account_types_array">
+        <item>Patient</item>
+        <item>Doctor</item>
+        <item>Nutritionist</item>
+        <item>Medical Student</item>
+    </string-array>
+</resources>

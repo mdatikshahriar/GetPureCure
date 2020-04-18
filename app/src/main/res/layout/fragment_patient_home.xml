@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_patient_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/fragment_patient_home_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular Blog"
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp"
+                android:padding="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="50dp"/>
+
+            <TextView
+                android:id="@+id/fragment_patient_home_noPopularBlog_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Nothing to show!"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                android:layout_marginStart="60dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_patient_home_popularBlog_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/fragment_patient_home_allPopularBlog_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See all"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular Doctors"
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp"
+                android:padding="5dp"
+                android:layout_marginHorizontal="50dp"/>
+
+            <TextView
+                android:id="@+id/fragment_patient_home_noPopularDoctors_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Nothing to show!"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                android:layout_marginStart="60dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_patient_home_popularDoctors_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/fragment_patient_home_allPopularDoctors_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See all"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular Hospitals"
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp"
+                android:padding="5dp"
+                android:layout_marginHorizontal="50dp"/>
+
+            <TextView
+                android:id="@+id/fragment_patient_home_noPopularHospitals_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Nothing to show!"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                android:layout_marginStart="60dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_patient_home_popularHospitals_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/fragment_patient_home_allPopularHospitals_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See all"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/fragment_patient_home_ProgressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="350dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

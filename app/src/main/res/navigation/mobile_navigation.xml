@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.getPureCure.patientPart.ui.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_patient_home" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_blog"
+        android:name="com.example.getPureCure.patientPart.ui.BlogFragment"
+        android:label="Blog"
+        tools:layout="@layout/fragment_patient_blog" />
+
+    <fragment
+        android:id="@+id/navigation_doctors"
+        android:name="com.example.getPureCure.patientPart.ui.DoctorsFragment"
+        android:label="Doctors"
+        tools:layout="@layout/fragment_patient_doctors" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_hospitals"
+        android:name="com.example.getPureCure.patientPart.ui.HospitalsFragment"
+        android:label="Hospitals"
+        tools:layout="@layout/fragment_patient_hospitals" />
+
+    <fragment
+        android:id="@+id/navigation_shop"
+        android:name="com.example.getPureCure.patientPart.ui.ShopFragment"
+        android:label="Shop"
+        tools:layout="@layout/fragment_patient_shop" />
+</navigation>
