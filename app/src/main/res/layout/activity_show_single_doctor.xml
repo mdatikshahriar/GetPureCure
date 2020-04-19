@@ -66,7 +66,8 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:textSize="20sp"
-                            android:textColor="@color/colorPrimary"/>
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginStart="10dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"

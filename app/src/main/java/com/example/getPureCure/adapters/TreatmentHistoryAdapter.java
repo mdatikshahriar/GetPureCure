@@ -1,6 +1,7 @@
 package com.example.getPureCure.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.getPureCure.R;
+import com.example.getPureCure.assets.Time;
 import com.example.getPureCure.objects.TreatmentHistory;
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class TreatmentHistoryAdapter extends RecyclerView.Adapter <RecyclerView.ViewHolder> {
@@ -47,7 +50,8 @@ public class TreatmentHistoryAdapter extends RecyclerView.Adapter <RecyclerView.
         LinearLayout testsLinearLayout = treatmentHistoryHolder.testsLinearLayout;
         LinearLayout medicinesLinearLayout = treatmentHistoryHolder.medicinesLinearLayout;
 
-        dateTextView.setText(treatmentHistory.getDate());
+        dateTextView.setText(Time.getTimeDate(treatmentHistory.getDate()));
+
         doctorNameTextView.setText(treatmentHistory.getDoctorName());
 
         for (int i = 0; i < treatmentHistory.getDiseases().size(); i++) {
