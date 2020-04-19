@@ -12,7 +12,7 @@
         android:id="@+id/activity_show_own_account_NestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -75,49 +75,21 @@
                                 android:text="Patient"
                                 android:textSize="20sp"
                                 android:textColor="@color/colorPrimary"/>
+
+
+                            <TextView
+                                android:id="@+id/activity_show_own_account_updateAccount_TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Update Account"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="20sp"
+                                android:textAlignment="center"
+                                android:background="@drawable/ash_rounded_rectangle"
+                                android:padding="10dp"
+                                android:layout_gravity="center"/>
+
                         </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <Button
-                                android:id="@+id/activity_show_own_account_updateAccount_Button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Update\nAccount"
-                                android:background="@drawable/primary_rounded_rectangle"
-                                android:padding="10dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <Button
-                                android:id="@+id/activity_show_own_account_updatePhysicalInfo_Button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Update\nPhysical Info"
-                                android:background="@drawable/primary_rounded_rectangle"
-                                android:padding="10dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -233,13 +205,33 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Physical Info"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginHorizontal="10dp"/>
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="Physical Info"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimary"/>
+
+                        <TextView
+                            android:id="@+id/activity_show_own_account_updatePhysicalInfo_TextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Update"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite"
+                            android:textAlignment="center"
+                            android:background="@drawable/primary_rounded_rectangle"
+                            android:padding="5dp"/>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -355,7 +347,6 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_margin="10dp">
 
                 <LinearLayout
@@ -364,15 +355,36 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Treatment History"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginHorizontal="10dp"/>
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="My Treatment History"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimary"/>
+
+                        <TextView
+                            android:id="@+id/activity_show_own_account_addTreatmentHistory_TextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Add"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorWhite"
+                            android:textAlignment="center"
+                            android:background="@drawable/primary_rounded_rectangle"
+                            android:padding="5dp"/>
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/activity_show_own_account_treatmentHistory_RecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>

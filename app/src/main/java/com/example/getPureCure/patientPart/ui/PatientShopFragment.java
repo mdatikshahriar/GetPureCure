@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.getPureCure.R;
 
-public class ShopFragment extends Fragment {
+public class PatientShopFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

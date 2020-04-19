@@ -8,33 +8,36 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.getPureCure.patientPart.ui.HomeFragment"
+        android:name="com.example.getPureCure.patientPart.ui.PatientHomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_patient_home" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_blog"
-        android:name="com.example.getPureCure.patientPart.ui.BlogFragment"
+        android:name="com.example.getPureCure.patientPart.ui.PatientBlogFragment"
         android:label="Blog"
-        tools:layout="@layout/fragment_patient_blog" />
+        tools:layout="@layout/fragment_patient_blog" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_doctors"
-        android:name="com.example.getPureCure.patientPart.ui.DoctorsFragment"
+        android:name="com.example.getPureCure.patientPart.ui.PatientDoctorsFragment"
         android:label="Doctors"
         tools:layout="@layout/fragment_patient_doctors" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_hospitals"
-        android:name="com.example.getPureCure.patientPart.ui.HospitalsFragment"
+        android:name="com.example.getPureCure.patientPart.ui.PatientHospitalsFragment"
         android:label="Hospitals"
-        tools:layout="@layout/fragment_patient_hospitals" />
+        tools:layout="@layout/fragment_patient_hospitals" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_shop"
-        android:name="com.example.getPureCure.patientPart.ui.ShopFragment"
+        android:name="com.example.getPureCure.patientPart.ui.PatientShopFragment"
         android:label="Shop"
-        tools:layout="@layout/fragment_patient_shop" />
+        tools:layout="@layout/fragment_patient_shop" >
+    </fragment>
 </navigation>

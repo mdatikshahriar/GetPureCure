@@ -4,9 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/options_refresh"
+        android:title="Refresh"
+        android:icon="@drawable/ic_reload_circle"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/option_account"
         android:title="Account"
-        android:icon="@drawable/ic_account"/>
+        android:icon="@drawable/ic_account"
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/option_settings"
@@ -17,17 +24,5 @@
         android:id="@+id/option_signOut"
         android:title="Sign Out"
         android:icon="@drawable/ic_sign_out"/>
-
-    <item
-        android:id="@+id/options_refresh"
-        android:title="Refresh"
-        android:icon="@drawable/ic_reload_circle"
-        app:showAsAction="always"/>
-
-    <item
-        android:id="@+id/option_search"
-        android:title="Search"
-        android:icon="@drawable/ic_search_circle"
-        app:showAsAction="always"/>
 
 </menu>

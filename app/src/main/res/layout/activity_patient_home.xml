@@ -30,6 +30,10 @@
                     android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+                    <androidx.appcompat.widget.SearchView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
                     <ImageView
                         android:layout_width="250dp"
                         android:layout_height="match_parent"

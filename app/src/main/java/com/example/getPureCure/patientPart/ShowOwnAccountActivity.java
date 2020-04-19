@@ -2,6 +2,8 @@ package com.example.getPureCure.patientPart;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -30,7 +32,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.getPureCure.MainActivity;
 import com.example.getPureCure.R;
+import com.example.getPureCure.adapters.TreatmentHistoryAdapter;
 import com.example.getPureCure.assets.API;
+import com.example.getPureCure.objects.TreatmentHistory;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -38,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ShowOwnAccountActivity extends AppCompatActivity {
@@ -47,12 +52,14 @@ public class ShowOwnAccountActivity extends AppCompatActivity {
 
     private ImageView profilePhotoCircularImageView;
 
-    private TextView accountNameTextView, accountTypeTextView, addressTextView, phoneTextView,
-            emailTextView, physicalHeightTextView, physicalWeightTextView, bloodGroupTextView;
+    private TextView accountNameTextView, accountTypeTextView, updateAccountTextView, addressTextView,
+            phoneTextView, emailTextView, updatePhysicalInfoTextView, physicalHeightTextView,
+            physicalWeightTextView, bloodGroupTextView, addTreatmentHistoryTextView;
 
     private LinearLayout physicalDiseasesLinearLayout;
 
-    private Button updateAccountButton, updatePhysicalInfoButton;
+    private RecyclerView treatmentHistoryRecyclerView;
+    private RecyclerView.Adapter treatmentHistoryRecyclerViewAdapter;
 
     private Dialog toastMessageDialog;
 
@@ -70,29 +77,56 @@ public class ShowOwnAccountActivity extends AppCompatActivity {
 
         accountNameTextView = findViewById(R.id.activity_show_own_account_accountName_TextView);
         accountTypeTextView = findViewById(R.id.activity_show_own_account_accountType_TextView);
+        updateAccountTextView = findViewById(R.id.activity_show_own_account_updateAccount_TextView);
         addressTextView = findViewById(R.id.activity_show_own_account_address_TextView);
         phoneTextView = findViewById(R.id.activity_show_own_account_phone_TextView);
         emailTextView = findViewById(R.id.activity_show_own_account_email_TextView);
+        updatePhysicalInfoTextView = findViewById(R.id.activity_show_own_account_updatePhysicalInfo_TextView);
         physicalHeightTextView = findViewById(R.id.activity_show_own_account_physicalHeight_TextView);
         physicalWeightTextView = findViewById(R.id.activity_show_own_account_physicalWeight_TextView);
         bloodGroupTextView = findViewById(R.id.activity_show_own_account_bloodGroup_TextView);
+        addTreatmentHistoryTextView = findViewById(R.id.activity_show_own_account_addTreatmentHistory_TextView);
 
         physicalDiseasesLinearLayout = findViewById(R.id.activity_show_own_account_physicalDiseases_LinearLayout);
 
-        updateAccountButton = findViewById(R.id.activity_show_own_account_updateAccount_Button);
-        updatePhysicalInfoButton = findViewById(R.id.activity_show_own_account_updatePhysicalInfo_Button);
+        treatmentHistoryRecyclerView = findViewById(R.id.activity_show_own_account_treatmentHistory_RecyclerView);
+
+        RecyclerView.LayoutManager treatmentHistoryRecyclerViewLayoutManager = new LinearLayoutManager(this);
+
+        treatmentHistoryRecyclerView.setLayoutManager(treatmentHistoryRecyclerViewLayoutManager);
 
         toastMessageDialog = new Dialog(ShowOwnAccountActivity.this);
 
         userId = MainActivity.getSavedValues().getAccountId();
 
-        loadAccount();
+        getPatientHistory();
+
+        updateAccountTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+
+        updatePhysicalInfoTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+
+        addTreatmentHistoryTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
     }
 
-    private void loadAccount() {
+    private void getPatientHistory() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.getGet_user_profile(userId),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.getGet_patient_history(userId),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -149,6 +183,46 @@ public class ShowOwnAccountActivity extends AppCompatActivity {
                                     textView.setPadding(20,10,20,10);
                                     physicalDiseasesLinearLayout.addView(textView);
                                 }
+                            }
+
+                            ArrayList<TreatmentHistory> treatmentHistoryArrayList = new ArrayList<>();
+
+                            if (jsonObject.has("history")) {
+                                JSONArray historyArray = jsonObject.getJSONArray("history");
+
+                                for (int i = 0; i < historyArray.length(); i++) {
+                                    JSONObject historyObject = historyArray.getJSONObject(i);
+
+                                    String id = historyObject.getString("_id").trim();
+                                    String doctorName = historyObject.getString("doctor_name").trim();
+                                    String date = historyObject.getString("date").trim();
+
+                                    JSONArray diseaseArray = historyObject.getJSONArray("diseases");
+                                    JSONArray testArray = historyObject.getJSONArray("tests");
+                                    JSONArray medicineArray = historyObject.getJSONArray("medicines");
+
+                                    ArrayList<String> diseases = new ArrayList<>();
+                                    ArrayList<String> tests = new ArrayList<>();
+                                    ArrayList<String> medicines = new ArrayList<>();
+
+                                    for (int j = 0; j < diseaseArray.length(); j++) {
+                                        diseases.add(diseaseArray.getString(j).trim());
+                                    }
+
+                                    for (int j = 0; j < testArray.length(); j++) {
+                                        tests.add(testArray.getString(j).trim());
+                                    }
+
+                                    for (int j = 0; j < medicineArray.length(); j++) {
+                                        medicines.add(medicineArray.getString(j).trim());
+                                    }
+
+                                    treatmentHistoryArrayList.add(new TreatmentHistory(id, doctorName, date, diseases, tests, medicines));
+                                }
+
+                                treatmentHistoryRecyclerViewAdapter = new TreatmentHistoryAdapter(ShowOwnAccountActivity.this, treatmentHistoryArrayList);
+
+                                treatmentHistoryRecyclerView.setAdapter(treatmentHistoryRecyclerViewAdapter);
                             }
 
                             showView();

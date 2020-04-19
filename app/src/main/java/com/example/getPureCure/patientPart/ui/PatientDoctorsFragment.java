@@ -46,7 +46,7 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class DoctorsFragment extends Fragment {
+public class PatientDoctorsFragment extends Fragment {
 
     private Context context;
 

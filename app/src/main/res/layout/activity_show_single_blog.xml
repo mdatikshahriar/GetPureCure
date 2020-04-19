@@ -12,7 +12,7 @@
         android:id="@+id/activity_show_single_blog_NestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout

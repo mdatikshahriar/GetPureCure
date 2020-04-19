@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -28,6 +27,7 @@ import com.example.getPureCure.R;
 import com.example.getPureCure.SignInActivity;
 import com.example.getPureCure.assets.API;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -99,6 +99,7 @@ public class PatientHomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_menu, menu);
+
         return true;
     }
 
