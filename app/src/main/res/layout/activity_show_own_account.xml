@@ -12,7 +12,7 @@
         android:id="@+id/activity_show_own_account_NestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -208,13 +208,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginHorizontal="10dp">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
+                            android:layout_weight="2.5"
                             android:text="Physical Info"
                             android:textSize="20sp"
                             android:textColor="@color/colorPrimary"/>
@@ -358,8 +357,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginHorizontal="10dp">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"

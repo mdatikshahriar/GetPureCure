@@ -11,59 +11,59 @@
     <ImageView
         android:layout_width="250dp"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="1.7"
         app:srcCompat="@drawable/logo3"
         android:layout_gravity="center"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_sign_up_name_EditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
             android:inputType="textPersonName"
-            android:textColor="@color/colorBlack"
-            android:ems="15"/>
+            android:textColor="@color/colorBlack"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_sign_up_email_EditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:textColor="@color/colorBlack"
-            android:ems="15"/>
+            android:textColor="@color/colorBlack"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginHorizontal="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_sign_up_phone_EditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone"
             android:inputType="phone"
-            android:textColor="@color/colorBlack"
-            android:ems="15"/>
+            android:textColor="@color/colorBlack"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -72,73 +72,74 @@
         android:layout_weight="0.8"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginHorizontal="50dp">
+        android:layout_marginHorizontal="40dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Account Type:"
             android:textSize="18sp"
             android:textColor="@color/colorAsh"/>
 
         <Spinner
             android:id="@+id/activity_sign_up_accountType_Spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:gravity="center"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        android:layout_marginHorizontal="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_sign_up_password_EditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="@color/colorBlack"
-            android:ems="15"/>
+            android:textColor="@color/colorBlack"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:gravity="center"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        android:layout_marginHorizontal="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_sign_up_confirmPassword_EditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:textColor="@color/colorBlack"
-            android:ems="15"/>
+            android:textColor="@color/colorBlack"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/activity_sign_up_signUp_Button"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:text="Sign Up"
         android:textSize="18sp"
         android:textColor="@color/colorWhite"
         android:background="@drawable/ash_rounded_rectangle"
         style="?android:attr/borderlessButtonStyle"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="60dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.7"
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:gravity="center">
