@@ -98,11 +98,11 @@ public class SmallBlogAdapter extends RecyclerView.Adapter <RecyclerView.ViewHol
     }
 
     private class BlogHolder extends RecyclerView.ViewHolder {
-        ImageView blogTitleImageView;
-        LinearLayout blogBodyLinearLayout;
-        TextView blogTitleTextView, blogDateTextView, blogLikeTextView, blogCommentTextView;
+        private ImageView blogTitleImageView;
+        private LinearLayout blogBodyLinearLayout;
+        private TextView blogTitleTextView, blogDateTextView, blogLikeTextView, blogCommentTextView;
 
-        String blogId;
+        private String blogId;
 
         BlogHolder(View itemView) {
             super(itemView);

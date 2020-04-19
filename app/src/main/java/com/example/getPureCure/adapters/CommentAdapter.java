@@ -96,10 +96,10 @@ public class CommentAdapter extends RecyclerView.Adapter <RecyclerView.ViewHolde
     }
 
     private class CommentHolder extends RecyclerView.ViewHolder {
-        ImageView authorProfilePhotoCircularImageView;
-        TextView authorNameTextView, contentTextView, timeTextView, replyTextView;
+        private ImageView authorProfilePhotoCircularImageView;
+        private TextView authorNameTextView, contentTextView, timeTextView, replyTextView;
 
-        public CommentHolder(View itemView) {
+        CommentHolder(View itemView) {
             super(itemView);
 
             authorProfilePhotoCircularImageView = itemView.findViewById(R.id.item_comment_authorProfilePhoto_CircularImageView);
@@ -107,13 +107,6 @@ public class CommentAdapter extends RecyclerView.Adapter <RecyclerView.ViewHolde
             contentTextView = itemView.findViewById(R.id.item_comment_content_TextView);
             timeTextView = itemView.findViewById(R.id.item_comment_time_TextView);
             replyTextView = itemView.findViewById(R.id.item_comment_reply_TextView);
-
-            authorNameTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //
-                }
-            });
 
             replyTextView.setOnClickListener(new View.OnClickListener() {
                 @Override

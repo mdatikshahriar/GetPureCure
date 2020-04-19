@@ -11,12 +11,12 @@
     <ImageView
         android:layout_width="250dp"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="3"
         app:srcCompat="@drawable/logo3"
         android:layout_gravity="center"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
@@ -24,16 +24,16 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_sign_in_email_EditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textColor="@color/colorBlack"
-            android:ems="15"/>
+            android:layout_marginHorizontal="40dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
@@ -42,18 +42,18 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_sign_in_password_EditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
             android:textColor="@color/colorBlack"
-            android:ems="15"/>
+            android:layout_marginHorizontal="40dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/activity_sign_in_signIn_Button"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:clickable="false"
         android:text="Sign In"
         android:textSize="18sp"

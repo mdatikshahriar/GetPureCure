@@ -57,9 +57,9 @@ public class HospitalsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     private class HospitalsHolder extends RecyclerView.ViewHolder {
-        ImageView hospitalPhotoImageView;
-        LinearLayout hospitalBodyLinearLayout;
-        TextView hospitalNameTextView, hospitalAddressTextView;
+        private ImageView hospitalPhotoImageView;
+        private LinearLayout hospitalBodyLinearLayout;
+        private TextView hospitalNameTextView, hospitalAddressTextView;
 
         HospitalsHolder(View itemView) {
             super(itemView);

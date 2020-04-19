@@ -52,9 +52,9 @@ public class ShowOwnAccountActivity extends AppCompatActivity {
 
     private ImageView profilePhotoCircularImageView;
 
-    private TextView accountNameTextView, accountTypeTextView, updateAccountTextView, addressTextView,
-            phoneTextView, emailTextView, updatePhysicalInfoTextView, physicalHeightTextView,
-            physicalWeightTextView, bloodGroupTextView, addTreatmentHistoryTextView;
+    private TextView accountNameTextView, accountTypeTextView, addressTextView,
+            phoneTextView, emailTextView, physicalHeightTextView,
+            physicalWeightTextView, bloodGroupTextView;
 
     private LinearLayout physicalDiseasesLinearLayout;
 
@@ -77,15 +77,16 @@ public class ShowOwnAccountActivity extends AppCompatActivity {
 
         accountNameTextView = findViewById(R.id.activity_show_own_account_accountName_TextView);
         accountTypeTextView = findViewById(R.id.activity_show_own_account_accountType_TextView);
-        updateAccountTextView = findViewById(R.id.activity_show_own_account_updateAccount_TextView);
         addressTextView = findViewById(R.id.activity_show_own_account_address_TextView);
         phoneTextView = findViewById(R.id.activity_show_own_account_phone_TextView);
         emailTextView = findViewById(R.id.activity_show_own_account_email_TextView);
-        updatePhysicalInfoTextView = findViewById(R.id.activity_show_own_account_updatePhysicalInfo_TextView);
         physicalHeightTextView = findViewById(R.id.activity_show_own_account_physicalHeight_TextView);
         physicalWeightTextView = findViewById(R.id.activity_show_own_account_physicalWeight_TextView);
         bloodGroupTextView = findViewById(R.id.activity_show_own_account_bloodGroup_TextView);
-        addTreatmentHistoryTextView = findViewById(R.id.activity_show_own_account_addTreatmentHistory_TextView);
+
+        TextView updateAccountTextView = findViewById(R.id.activity_show_own_account_updateAccount_TextView);
+        TextView updatePhysicalInfoTextView = findViewById(R.id.activity_show_own_account_updatePhysicalInfo_TextView);
+        TextView addTreatmentHistoryTextView = findViewById(R.id.activity_show_own_account_addTreatmentHistory_TextView);
 
         physicalDiseasesLinearLayout = findViewById(R.id.activity_show_own_account_physicalDiseases_LinearLayout);
 
@@ -226,9 +227,10 @@ public class ShowOwnAccountActivity extends AppCompatActivity {
                             }
 
                             showView();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.d("catchError", e.toString());
+                            showView();
                         }
                     }
                 },

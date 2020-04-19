@@ -74,11 +74,11 @@ public class DoctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private class DoctorsHolder extends RecyclerView.ViewHolder {
-        CircularImageView profilePhotoCircularImageView;
-        LinearLayout doctorBodyLinearLayout;
-        TextView doctorNameTextView, doctorSpecialtiesTextView;
+        private CircularImageView profilePhotoCircularImageView;
+        private LinearLayout doctorBodyLinearLayout;
+        private TextView doctorNameTextView, doctorSpecialtiesTextView;
 
-        String userId;
+        private String userId;
 
         DoctorsHolder(View itemView) {
             super(itemView);
