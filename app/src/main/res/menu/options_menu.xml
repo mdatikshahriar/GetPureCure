@@ -13,7 +13,7 @@
         android:id="@+id/option_account"
         android:title="Account"
         android:icon="@drawable/ic_account"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/option_settings"
@@ -24,5 +24,4 @@
         android:id="@+id/option_signOut"
         android:title="Sign Out"
         android:icon="@drawable/ic_sign_out"/>
-
 </menu>
