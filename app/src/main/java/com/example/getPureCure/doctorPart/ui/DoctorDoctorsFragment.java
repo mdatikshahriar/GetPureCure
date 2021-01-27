@@ -1,4 +1,4 @@
-package com.example.getPureCure.patientPart.ui;
+package com.example.getPureCure.doctorPart.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,9 +37,9 @@ import com.example.getPureCure.R;
 import com.example.getPureCure.adapters.DoctorsAdapter;
 import com.example.getPureCure.assets.API;
 import com.example.getPureCure.assets.SavedValues;
+import com.example.getPureCure.doctorPart.DoctorHomeActivity;
+import com.example.getPureCure.doctorPart.ShowAllDoctorsActivity;
 import com.example.getPureCure.objects.Doctor;
-import com.example.getPureCure.patientPart.PatientHomeActivity;
-import com.example.getPureCure.patientPart.ShowAllDoctorsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +48,7 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class PatientDoctorsFragment extends Fragment {
+public class DoctorDoctorsFragment extends Fragment {
 
     private Context context;
 
@@ -409,6 +409,6 @@ public class PatientDoctorsFragment extends Fragment {
             message = "Connection TimeOut! Please check your internet connection.";
         }
 
-        PatientHomeActivity.showToastMessage(message);
+        DoctorHomeActivity.showToastMessage(message);
     }
 }

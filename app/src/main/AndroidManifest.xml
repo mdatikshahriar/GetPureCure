@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.getPureCure">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -11,13 +16,28 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".patientPart.ShowOwnAccountActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity android:name=".patientPart.PatientHomeActivity" />
+        <activity android:name=".patientPart.ShowOwnAccountActivity" />
         <activity android:name=".patientPart.ShowSingleHospitalActivity" />
         <activity android:name=".patientPart.ShowSingleDoctorActivity" />
         <activity android:name=".patientPart.ShowSingleBlogActivity" />
         <activity android:name=".patientPart.ShowAllHospitalsActivity" />
         <activity android:name=".patientPart.ShowAllDoctorsActivity" />
+        <activity android:name=".patientPart.ShowAllBlogActivity" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -29,8 +49,15 @@
         </activity>
         <activity android:name=".SignInActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".patientPart.PatientHomeActivity" />
-        <activity android:name=".patientPart.ShowAllBlogActivity" />
+        <activity android:name=".doctorPart.DoctorHomeActivity" />
+        <activity android:name=".doctorPart.NewBlogActivity" />
+        <activity android:name=".doctorPart.ShowOwnAccountActivity" />
+        <activity android:name=".doctorPart.ShowSingleHospitalActivity" />
+        <activity android:name=".doctorPart.ShowSingleDoctorActivity" />
+        <activity android:name=".doctorPart.ShowSingleBlogActivity" />
+        <activity android:name=".doctorPart.ShowAllHospitalsActivity" />
+        <activity android:name=".doctorPart.ShowAllDoctorsActivity" />
+        <activity android:name=".doctorPart.ShowAllBlogActivity" />
     </application>
 
 </manifest>

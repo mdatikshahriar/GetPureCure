@@ -1,9 +1,4 @@
-package com.example.getPureCure.patientPart;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.getPureCure.doctorPart;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -24,6 +19,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -86,8 +86,7 @@ public class ShowSingleBlogActivity extends AppCompatActivity {
 
     private Boolean isLiked = false;
 
-    private  SavedValues savedValues;
-
+    private SavedValues savedValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

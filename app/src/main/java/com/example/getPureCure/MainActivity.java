@@ -26,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.getPureCure.assets.API;
 import com.example.getPureCure.assets.SavedValues;
+import com.example.getPureCure.doctorPart.DoctorHomeActivity;
 import com.example.getPureCure.patientPart.PatientHomeActivity;
 
 import java.nio.charset.StandardCharsets;
@@ -33,17 +34,16 @@ import java.nio.charset.StandardCharsets;
 public class MainActivity extends AppCompatActivity {
 
     private static RetryPolicy retryPolicy;
-    private static SavedValues savedValues;
+    private SavedValues savedValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("GetPureCure_SharedPreferences", Context.MODE_PRIVATE);
-        savedValues = new SavedValues(sharedPreferences);
-
         retryPolicy = new DefaultRetryPolicy(0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
+        getSavedValues();
 
         final String accountId = savedValues.getAccountId();
         final String accountToken = savedValues.getAccountToken();
@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                                                 finish();
                                                 break;
                                             case "doctor":
-                                                //
+                                                startActivity(new Intent(MainActivity.this, DoctorHomeActivity.class));
+                                                finish();
                                                 break;
                                             case "nutritionist":
                                                 //
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    public boolean isOnline() {
+    private boolean isOnline() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm != null ? cm.getActiveNetworkInfo() : null;
@@ -138,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
         return retryPolicy;
     }
 
-    public static SavedValues getSavedValues() {
-        return savedValues;
+    private void getSavedValues() {
+        SharedPreferences sharedPreferences = getSharedPreferences("GetPureCure_SharedPreferences", Context.MODE_PRIVATE);
+        savedValues = new SavedValues(sharedPreferences);
     }
 }

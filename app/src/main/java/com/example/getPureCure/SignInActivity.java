@@ -3,7 +3,9 @@ package com.example.getPureCure;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -27,6 +29,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.getPureCure.assets.API;
+import com.example.getPureCure.assets.SavedValues;
+import com.example.getPureCure.doctorPart.DoctorHomeActivity;
 import com.example.getPureCure.patientPart.PatientHomeActivity;
 
 import org.json.JSONException;
@@ -40,6 +44,8 @@ import java.util.Objects;
 public class SignInActivity extends AppCompatActivity {
 
     private Dialog toastMessageDialog;
+
+    private SavedValues savedValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,11 +110,15 @@ public class SignInActivity extends AppCompatActivity {
                                     String accountName = userObject.getString("name").trim();
                                     String accountPhotoUri = userObject.getString("photo").trim();
 
-                                    MainActivity.getSavedValues().setAccountId(accountId);
-                                    MainActivity.getSavedValues().setAccountToken(accountToken);
-                                    MainActivity.getSavedValues().setAccountType(accountType);
-                                    MainActivity.getSavedValues().setAccountName(accountName);
-                                    MainActivity.getSavedValues().setAccountPhotoUri(accountPhotoUri);
+                                    getSavedValues();
+
+                                    savedValues.setAccountId(accountId);
+                                    savedValues.setAccountToken(accountToken);
+                                    savedValues.setAccountType(accountType);
+                                    savedValues.setAccountName(accountName);
+                                    savedValues.setAccountPhotoUri(accountPhotoUri);
+
+                                    Log.d("user", accountType);
 
                                     switch (accountType) {
                                         case "patient":
@@ -116,7 +126,8 @@ public class SignInActivity extends AppCompatActivity {
                                             finish();
                                             break;
                                         case "doctor":
-
+                                            startActivity(new Intent(SignInActivity.this, DoctorHomeActivity.class));
+                                            finish();
                                             break;
                                         case "nutritionist":
 
@@ -188,6 +199,11 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
+    }
+
+    private void getSavedValues() {
+        SharedPreferences sharedPreferences = getSharedPreferences("GetPureCure_SharedPreferences", Context.MODE_PRIVATE);
+        savedValues = new SavedValues(sharedPreferences);
     }
 
     private void showToastMessage(final String message) {

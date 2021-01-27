@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_doctor_home"
         android:icon="@drawable/ic_home"
         android:title="Home" />
 
     <item
-        android:id="@+id/navigation_blog"
+        android:id="@+id/navigation_doctor_blog"
         android:icon="@drawable/ic_health_blog"
         android:title="Blog" />
 
     <item
-        android:id="@+id/navigation_doctors"
+        android:id="@+id/navigation_doctor_doctors"
         android:icon="@drawable/ic_doctor"
         android:title="Doctors" />
 
     <item
-        android:id="@+id/navigation_hospitals"
+        android:id="@+id/navigation_doctor_hospitals"
         android:icon="@drawable/ic_hospital"
         android:title="Hospitals" />
 
     <item
-        android:id="@+id/navigation_shop"
+        android:id="@+id/navigation_doctor_shop"
         android:icon="@drawable/ic_shop"
         android:title="Shop" />
 </menu>

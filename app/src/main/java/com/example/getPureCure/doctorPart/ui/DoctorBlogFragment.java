@@ -1,4 +1,4 @@
-package com.example.getPureCure.patientPart.ui;
+package com.example.getPureCure.doctorPart.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,9 +37,10 @@ import com.example.getPureCure.adapters.BigBlogAdapter;
 import com.example.getPureCure.adapters.SmallBlogAdapter;
 import com.example.getPureCure.assets.API;
 import com.example.getPureCure.assets.SavedValues;
+import com.example.getPureCure.doctorPart.DoctorHomeActivity;
+import com.example.getPureCure.doctorPart.NewBlogActivity;
+import com.example.getPureCure.doctorPart.ShowAllBlogActivity;
 import com.example.getPureCure.objects.Blog;
-import com.example.getPureCure.patientPart.PatientHomeActivity;
-import com.example.getPureCure.patientPart.ShowAllBlogActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +49,7 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class PatientBlogFragment extends Fragment {
+public class DoctorBlogFragment extends Fragment {
 
     private Context context;
 
@@ -60,7 +61,10 @@ public class PatientBlogFragment extends Fragment {
     private ProgressBar progressBar;
     private Spinner blogCategorySpinner;
 
-    private TextView allCategorizedBlogTextView, allSuggestedBlogTextView, allRecentBlogTextView, allPopularBlogTextView;
+    private TextView allCategorizedBlogTextView;
+    private TextView allSuggestedBlogTextView;
+    private TextView allRecentBlogTextView;
+    private TextView allPopularBlogTextView;
     private TextView noCategorizedBlogTextView, noSuggestedBlogTextView, noRecentBlogTextView, noPopularBlogTextView;
 
     private ArrayList<Blog> categorizedBlogArrayList, suggestedBlogArrayList, recentBlogArrayList, popularBlogArrayList;
@@ -76,14 +80,14 @@ public class PatientBlogFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_patient_blog, container, false);
+        View root = inflater.inflate(R.layout.fragment_doctor_blog, container, false);
 
         context = container.getContext();
 
-        categorizedBlogRecyclerView = root.findViewById(R.id.fragment_patient_blog_categorizedBlog_RecyclerView);
-        suggestedBlogRecyclerView = root.findViewById(R.id.fragment_patient_blog_suggestedBlog_RecyclerView);
-        recentBlogRecyclerView = root.findViewById(R.id.fragment_patient_blog_recentBlog_RecyclerView);
-        popularBlogRecyclerView = root.findViewById(R.id.fragment_patient_blog_popularBlog_RecyclerView);
+        categorizedBlogRecyclerView = root.findViewById(R.id.fragment_doctor_blog_categorizedBlog_RecyclerView);
+        suggestedBlogRecyclerView = root.findViewById(R.id.fragment_doctor_blog_suggestedBlog_RecyclerView);
+        recentBlogRecyclerView = root.findViewById(R.id.fragment_doctor_blog_recentBlog_RecyclerView);
+        popularBlogRecyclerView = root.findViewById(R.id.fragment_doctor_blog_popularBlog_RecyclerView);
 
         RecyclerView.LayoutManager categorizedBlogRecyclerViewLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager suggestedBlogRecyclerViewLayoutManager = new LinearLayoutManager(context);
@@ -95,18 +99,19 @@ public class PatientBlogFragment extends Fragment {
         recentBlogRecyclerView.setLayoutManager(recentBlogRecyclerViewLayoutManager);
         popularBlogRecyclerView.setLayoutManager(popularBlogRecyclerViewLayoutManager);
 
-        scrollView = root.findViewById(R.id.fragment_patient_blog_ScrollView);
-        progressBar = root.findViewById(R.id.fragment_patient_blog_ProgressBar);
-        blogCategorySpinner = root.findViewById(R.id.fragment_patient_blog_blogCategory_Spinner);
+        scrollView = root.findViewById(R.id.fragment_doctor_blog_ScrollView);
+        progressBar = root.findViewById(R.id.fragment_doctor_blog_ProgressBar);
+        blogCategorySpinner = root.findViewById(R.id.fragment_doctor_blog_blogCategory_Spinner);
 
-        allCategorizedBlogTextView = root.findViewById(R.id.fragment_patient_blog_allCategorizedBlog_TextView);
-        allSuggestedBlogTextView = root.findViewById(R.id.fragment_patient_blog_allSuggestedBlog_TextView);
-        allRecentBlogTextView = root.findViewById(R.id.fragment_patient_blog_allRecentBlog_TextView);
-        allPopularBlogTextView = root.findViewById(R.id.fragment_patient_blog_allPopularBlog_TextView);
-        noCategorizedBlogTextView = root.findViewById(R.id.fragment_patient_blog_noCategorizedBlog_TextView);
-        noSuggestedBlogTextView = root.findViewById(R.id.fragment_patient_blog_noSuggestedBlog_TextView);
-        noRecentBlogTextView = root.findViewById(R.id.fragment_patient_blog_noRecentBlog_TextView);
-        noPopularBlogTextView = root.findViewById(R.id.fragment_patient_blog_noPopularBlog_TextView);
+        TextView newBlogTextView = root.findViewById(R.id.fragment_doctor_blog_newBlog_TextView);
+        allCategorizedBlogTextView = root.findViewById(R.id.fragment_doctor_blog_allCategorizedBlog_TextView);
+        allSuggestedBlogTextView = root.findViewById(R.id.fragment_doctor_blog_allSuggestedBlog_TextView);
+        allRecentBlogTextView = root.findViewById(R.id.fragment_doctor_blog_allRecentBlog_TextView);
+        allPopularBlogTextView = root.findViewById(R.id.fragment_doctor_blog_allPopularBlog_TextView);
+        noCategorizedBlogTextView = root.findViewById(R.id.fragment_doctor_blog_noCategorizedBlog_TextView);
+        noSuggestedBlogTextView = root.findViewById(R.id.fragment_doctor_blog_noSuggestedBlog_TextView);
+        noRecentBlogTextView = root.findViewById(R.id.fragment_doctor_blog_noRecentBlog_TextView);
+        noPopularBlogTextView = root.findViewById(R.id.fragment_doctor_blog_noPopularBlog_TextView);
 
         suggestedBlogArrayList = new ArrayList<>();
         recentBlogArrayList = new ArrayList<>();
@@ -128,6 +133,13 @@ public class PatientBlogFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        newBlogTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), NewBlogActivity.class));
             }
         });
 
@@ -519,6 +531,6 @@ public class PatientBlogFragment extends Fragment {
             message = "Connection TimeOut! Please check your internet connection.";
         }
 
-        PatientHomeActivity.showToastMessage(message);
+        DoctorHomeActivity.showToastMessage(message);
     }
 }

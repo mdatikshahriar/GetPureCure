@@ -1,4 +1,4 @@
-package com.example.getPureCure.patientPart.ui;
+package com.example.getPureCure.doctorPart.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,9 +37,9 @@ import com.example.getPureCure.R;
 import com.example.getPureCure.adapters.HospitalsAdapter;
 import com.example.getPureCure.assets.API;
 import com.example.getPureCure.assets.SavedValues;
+import com.example.getPureCure.doctorPart.DoctorHomeActivity;
+import com.example.getPureCure.doctorPart.ShowAllHospitalsActivity;
 import com.example.getPureCure.objects.Hospital;
-import com.example.getPureCure.patientPart.PatientHomeActivity;
-import com.example.getPureCure.patientPart.ShowAllHospitalsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +48,7 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class PatientHospitalsFragment extends Fragment {
+public class DoctorHospitalsFragment extends Fragment {
 
     private Context context;
 
@@ -418,7 +418,6 @@ public class PatientHospitalsFragment extends Fragment {
         popularHospitalStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
 
         requestQueue.add(popularHospitalStringRequest);
-
     }
 
     private SavedValues getSavedValues() {
@@ -449,6 +448,6 @@ public class PatientHospitalsFragment extends Fragment {
             message = "Connection TimeOut! Please check your internet connection.";
         }
 
-        PatientHomeActivity.showToastMessage(message);
+        DoctorHomeActivity.showToastMessage(message);
     }
 }

@@ -13,12 +13,12 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:toolbarId="@+id/patientToolbar"
+            app:toolbarId="@+id/doctorToolbar"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:contentScrim="@color/colorWhite">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/patientToolbar"
+                android:id="@+id/doctorToolbar"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:background="@color/colorWhite"
@@ -35,7 +35,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/activity_patient_home_SwipeRefreshLayout"
+        android:id="@+id/activity_doctor_home_SwipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -45,22 +45,22 @@
             android:layout_height="wrap_content">
 
             <fragment
-                android:id="@+id/patient_nav_host_fragment"
+                android:id="@+id/doctor_nav_host_fragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="56dp"
                 app:defaultNavHost="true"
-                app:navGraph="@navigation/mobile_navigation_patient" />
+                app:navGraph="@navigation/mobile_navigation_doctor" />
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/patient_nav_view"
+        android:id="@+id/doctor_nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         android:layout_gravity="bottom"
-        app:menu="@menu/bottom_nav_menu_patient"
+        app:menu="@menu/bottom_nav_menu_doctor"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

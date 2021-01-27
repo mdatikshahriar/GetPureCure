@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ import com.example.getPureCure.MainActivity;
 import com.example.getPureCure.R;
 import com.example.getPureCure.adapters.DoctorsAdapter;
 import com.example.getPureCure.assets.API;
+import com.example.getPureCure.assets.SavedValues;
 import com.example.getPureCure.objects.Doctor;
 
 import org.json.JSONArray;
@@ -90,7 +93,7 @@ public class ShowAllDoctorsActivity extends AppCompatActivity {
         } else if (doctorsType.equals("suggestedDoctors")){
             customTextView.setText("All Suggested Doctors for You");
 
-            loadSuggestedDoctors(MainActivity.getSavedValues().getAccountId());
+            loadSuggestedDoctors(getSavedValues().getAccountId());
 
         } else if (doctorsType.equals("popularDoctors")){
             customTextView.setText("All Popular Doctors");
@@ -269,6 +272,11 @@ public class ShowAllDoctorsActivity extends AppCompatActivity {
         doctorStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
 
         requestQueue.add(doctorStringRequest);
+    }
+
+    private SavedValues getSavedValues() {
+        SharedPreferences sharedPreferences = getSharedPreferences("GetPureCure_SharedPreferences", Context.MODE_PRIVATE);
+        return new SavedValues(sharedPreferences);
     }
 
     private void showView() {

@@ -1,4 +1,4 @@
-package com.example.getPureCure.patientPart;
+package com.example.getPureCure.doctorPart;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,8 +11,18 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -31,25 +41,13 @@ import com.example.getPureCure.SignInActivity;
 import com.example.getPureCure.assets.API;
 import com.example.getPureCure.assets.SavedValues;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.squareup.picasso.Picasso;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class PatientHomeActivity extends AppCompatActivity {
+public class DoctorHomeActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -61,29 +59,29 @@ public class PatientHomeActivity extends AppCompatActivity {
 
     private int fragmentId;
 
-    private  SavedValues savedValues;
+    private SavedValues savedValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_home);
-        BottomNavigationView navView = findViewById(R.id.patient_nav_view);
+        setContentView(R.layout.activity_doctor_home);
+        BottomNavigationView navView = findViewById(R.id.doctor_nav_view);
 
-        swipeRefreshLayout = findViewById(R.id.activity_patient_home_SwipeRefreshLayout);
+        swipeRefreshLayout = findViewById(R.id.activity_doctor_home_SwipeRefreshLayout);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_patient_home, R.id.navigation_patient_blog, R.id.navigation_patient_doctors, R.id.navigation_patient_hospitals, R.id.navigation_patient_shop)
+                R.id.navigation_doctor_home, R.id.navigation_doctor_blog, R.id.navigation_doctor_doctors, R.id.navigation_doctor_hospitals, R.id.navigation_doctor_shop)
                 .build();
-        navController = Navigation.findNavController(this, R.id.patient_nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.doctor_nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Toolbar toolbar = findViewById(R.id.patientToolbar);
+        Toolbar toolbar = findViewById(R.id.doctorToolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        toastMessageDialog = new Dialog(PatientHomeActivity.this);
+        toastMessageDialog = new Dialog(DoctorHomeActivity.this);
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -99,6 +97,7 @@ public class PatientHomeActivity extends AppCompatActivity {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
     }
 
     @Override
@@ -116,7 +115,7 @@ public class PatientHomeActivity extends AppCompatActivity {
             navController.navigate(fragmentId);
 
         } else if (id == R.id.option_account){
-            startActivity(new Intent(PatientHomeActivity.this, ShowOwnAccountActivity.class));
+            startActivity(new Intent(DoctorHomeActivity.this, ShowOwnAccountActivity.class));
 
         } else if (id == R.id.option_settings){
             //
@@ -133,7 +132,7 @@ public class PatientHomeActivity extends AppCompatActivity {
 
                             savedValues.setAccountId("N/A");
                             savedValues.setAccountToken("N/A");
-                            startActivity(new Intent(PatientHomeActivity.this, SignInActivity.class));
+                            startActivity(new Intent(DoctorHomeActivity.this, SignInActivity.class));
                             finish();
                         }
                     },
@@ -176,7 +175,7 @@ public class PatientHomeActivity extends AppCompatActivity {
 
             stringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
 
-            RequestQueue requestQueue = Volley.newRequestQueue(PatientHomeActivity.this);
+            RequestQueue requestQueue = Volley.newRequestQueue(DoctorHomeActivity.this);
             requestQueue.add(stringRequest);
         }
         return true;

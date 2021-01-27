@@ -1,8 +1,4 @@
-package com.example.getPureCure.patientPart;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.getPureCure.doctorPart;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.ParseError;
@@ -31,10 +31,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.getPureCure.MainActivity;
 import com.example.getPureCure.R;
-import com.example.getPureCure.adapters.HospitalsAdapter;
+import com.example.getPureCure.adapters.DoctorsAdapter;
 import com.example.getPureCure.assets.API;
 import com.example.getPureCure.assets.SavedValues;
-import com.example.getPureCure.objects.Hospital;
+import com.example.getPureCure.objects.Doctor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +44,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ShowAllHospitalsActivity extends AppCompatActivity {
+public class ShowAllDoctorsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
@@ -56,57 +56,57 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
 
     private Dialog toastMessageDialog;
 
-    private ArrayList<Hospital> hospitalArrayList;
+    private ArrayList<Doctor> doctorArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_all_hospitals);
+        setContentView(R.layout.activity_show_all_doctors);
 
-        recyclerView = findViewById(R.id.activity_show_all_hospitals_RecyclerView);
+        recyclerView = findViewById(R.id.activity_show_all_doctors_RecyclerView);
 
         RecyclerView.LayoutManager recyclerViewLayoutManager = new GridLayoutManager(this, 2);
 
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
 
-        scrollView = findViewById(R.id.activity_show_all_hospitals_ScrollView);
-        progressBar = findViewById(R.id.activity_show_all_hospitals_ProgressBar);
+        scrollView = findViewById(R.id.activity_show_all_doctors_ScrollView);
+        progressBar = findViewById(R.id.activity_show_all_doctors_ProgressBar);
 
-        TextView customTextView = findViewById(R.id.activity_show_all_hospitals_custom_TextView);
-        noTextView = findViewById(R.id.activity_show_all_hospitals_no_TextView);
+        TextView customTextView = findViewById(R.id.activity_show_all_doctors_custom_TextView);
+        noTextView = findViewById(R.id.activity_show_all_doctors_no_TextView);
 
-        toastMessageDialog = new Dialog(ShowAllHospitalsActivity.this);
+        toastMessageDialog = new Dialog(ShowAllDoctorsActivity.this);
 
-        hospitalArrayList = new ArrayList<>();
+        doctorArrayList = new ArrayList<>();
 
         Intent intent = getIntent();
 
-        String hospitalsType = intent.getStringExtra("hospitals_type");
+        String doctorsType = intent.getStringExtra("doctors_type");
 
-        if (hospitalsType.equals("categorizedHospitals")){
-            String hospitalsCategory = intent.getStringExtra("hospitals_category");
+        if (doctorsType.equals("categorizedDoctors")){
+            String doctorsCategory = intent.getStringExtra("doctors_category");
 
-            customTextView.setText("All Hospitals on " + hospitalsCategory + " Category");
+            customTextView.setText("All Doctors on " + doctorsCategory + " Category");
 
-            loadCategorizedHospitals(hospitalsCategory);
+            loadCategorizedDoctors(doctorsCategory);
 
-        } else if (hospitalsType.equals("suggestedHospitals")){
-            customTextView.setText("All Suggested Hospitals for You");
+        } else if (doctorsType.equals("suggestedDoctors")){
+            customTextView.setText("All Suggested Doctors for You");
 
-            loadSuggestedHospitals(getSavedValues().getAccountId());
+            loadSuggestedDoctors(getSavedValues().getAccountId());
 
-        } else if (hospitalsType.equals("popularHospitals")){
-            customTextView.setText("All Popular Hospitals");
+        } else if (doctorsType.equals("popularDoctors")){
+            customTextView.setText("All Popular Doctors");
 
-            loadPopularHospitals();
+            loadPopularDoctors();
 
         }
     }
 
-    private void loadCategorizedHospitals(String category) {
+    private void loadCategorizedDoctors(String category) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest hospitalStringRequest = new StringRequest(Request.Method.GET, API.getGet_hospitals_by_category(category),
+        StringRequest doctorStringRequest = new StringRequest(Request.Method.GET, API.getGet_doctors_by_category(category),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -120,30 +120,16 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                             for (int i = 0; i < length; i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                //edit it
-                                String id = jsonObject.getString("_id").trim();
-                                String name = jsonObject.getString("name").trim();
+                                JSONObject userIdObject = jsonObject.getJSONObject("user_id");
+
+                                String name = userIdObject.getString("name").trim();
+                                String photoUri = userIdObject.getString("photo").trim();
+                                String user_id = userIdObject.getString("_id").trim();
                                 String category = jsonObject.getString("category").trim();
-                                String address = jsonObject.getString("address").trim();
-                                String contact = jsonObject.getString("contact").trim();
-                                String openHour = jsonObject.getString("open_hour").trim();
 
-                                JSONArray facilityArray = jsonObject.getJSONArray("facilities");
-                                JSONArray testArray = jsonObject.getJSONArray("tests");
-                                ArrayList<String> facilities = new ArrayList<>();
-                                ArrayList<String> tests = new ArrayList<>();
-
-                                for (int j = 0; j < facilityArray.length(); j++) {
-                                    facilities.add(facilityArray.getString(j).trim());
-                                }
-
-                                for (int k = 0; k < testArray.length(); k++) {
-                                    tests.add(testArray.getString(k).trim());
-                                }
-
-                                hospitalArrayList.add(new Hospital(id, name, category, address, contact, openHour, facilities, tests));
+                                doctorArrayList.add(new Doctor(name, photoUri, user_id, category));
                             }
-                            recyclerViewAdapter = new HospitalsAdapter(ShowAllHospitalsActivity.this, hospitalArrayList);
+                            recyclerViewAdapter = new DoctorsAdapter(ShowAllDoctorsActivity.this, doctorArrayList);
 
                             recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -158,6 +144,7 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                             e.printStackTrace();
                             Log.d("catchError", e.toString());
                         }
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -168,15 +155,15 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                     }
                 });
 
-        hospitalStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
+        doctorStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
 
-        requestQueue.add(hospitalStringRequest);
+        requestQueue.add(doctorStringRequest);
     }
 
-    private void loadSuggestedHospitals(String accountId) {
+    private void loadSuggestedDoctors(String accountId) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest hospitalStringRequest = new StringRequest(Request.Method.GET, API.getGet_suggested_hospitals(accountId),
+        StringRequest doctorStringRequest = new StringRequest(Request.Method.GET, API.getGet_suggested_doctors(accountId),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -190,30 +177,16 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                             for (int i = 0; i < length; i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                //edit it
-                                String id = jsonObject.getString("_id").trim();
-                                String name = jsonObject.getString("name").trim();
+                                JSONObject userIdObject = jsonObject.getJSONObject("user_id");
+
+                                String name = userIdObject.getString("name").trim();
+                                String photoUri = userIdObject.getString("photo").trim();
+                                String user_id = userIdObject.getString("_id").trim();
                                 String category = jsonObject.getString("category").trim();
-                                String address = jsonObject.getString("address").trim();
-                                String contact = jsonObject.getString("contact").trim();
-                                String openHour = jsonObject.getString("open_hour").trim();
 
-                                JSONArray facilityArray = jsonObject.getJSONArray("facilities");
-                                JSONArray testArray = jsonObject.getJSONArray("tests");
-                                ArrayList<String> facilities = new ArrayList<>();
-                                ArrayList<String> tests = new ArrayList<>();
-
-                                for (int j = 0; j < facilityArray.length(); j++) {
-                                    facilities.add(facilityArray.getString(j).trim());
-                                }
-
-                                for (int k = 0; k < testArray.length(); k++) {
-                                    tests.add(testArray.getString(k).trim());
-                                }
-
-                                hospitalArrayList.add(new Hospital(id, name, category, address, contact, openHour, facilities, tests));
+                                doctorArrayList.add(new Doctor(name, photoUri, user_id, category));
                             }
-                            recyclerViewAdapter = new HospitalsAdapter(ShowAllHospitalsActivity.this, hospitalArrayList);
+                            recyclerViewAdapter = new DoctorsAdapter(ShowAllDoctorsActivity.this, doctorArrayList);
 
                             recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -228,6 +201,7 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                             e.printStackTrace();
                             Log.d("catchError", e.toString());
                         }
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -238,15 +212,15 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                     }
                 });
 
-        hospitalStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
+        doctorStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
 
-        requestQueue.add(hospitalStringRequest);
+        requestQueue.add(doctorStringRequest);
     }
 
-    private void loadPopularHospitals() {
+    private void loadPopularDoctors() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest hospitalStringRequest = new StringRequest(Request.Method.GET, API.getGet_popular_hospitals(),
+        StringRequest doctorStringRequest = new StringRequest(Request.Method.GET, API.getGet_popular_doctors(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -260,30 +234,16 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                             for (int i = 0; i < length; i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                //edit it
-                                String id = jsonObject.getString("_id").trim();
-                                String name = jsonObject.getString("name").trim();
+                                JSONObject userIdObject = jsonObject.getJSONObject("user_id");
+
+                                String name = userIdObject.getString("name").trim();
+                                String photoUri = userIdObject.getString("photo").trim();
+                                String user_id = userIdObject.getString("_id").trim();
                                 String category = jsonObject.getString("category").trim();
-                                String address = jsonObject.getString("address").trim();
-                                String contact = jsonObject.getString("contact").trim();
-                                String openHour = jsonObject.getString("open_hour").trim();
 
-                                JSONArray facilityArray = jsonObject.getJSONArray("facilities");
-                                JSONArray testArray = jsonObject.getJSONArray("tests");
-                                ArrayList<String> facilities = new ArrayList<>();
-                                ArrayList<String> tests = new ArrayList<>();
-
-                                for (int j = 0; j < facilityArray.length(); j++) {
-                                    facilities.add(facilityArray.getString(j).trim());
-                                }
-
-                                for (int k = 0; k < testArray.length(); k++) {
-                                    tests.add(testArray.getString(k).trim());
-                                }
-
-                                hospitalArrayList.add(new Hospital(id, name, category, address, contact, openHour, facilities, tests));
+                                doctorArrayList.add(new Doctor(name, photoUri, user_id, category));
                             }
-                            recyclerViewAdapter = new HospitalsAdapter(ShowAllHospitalsActivity.this, hospitalArrayList);
+                            recyclerViewAdapter = new DoctorsAdapter(ShowAllDoctorsActivity.this, doctorArrayList);
 
                             recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -298,6 +258,7 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                             e.printStackTrace();
                             Log.d("catchError", e.toString());
                         }
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -308,9 +269,9 @@ public class ShowAllHospitalsActivity extends AppCompatActivity {
                     }
                 });
 
-        hospitalStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
+        doctorStringRequest.setRetryPolicy(MainActivity.getRetryPolicy());
 
-        requestQueue.add(hospitalStringRequest);
+        requestQueue.add(doctorStringRequest);
     }
 
     private SavedValues getSavedValues() {

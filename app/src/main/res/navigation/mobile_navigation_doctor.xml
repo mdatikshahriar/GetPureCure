@@ -4,39 +4,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_doctor_home">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.getPureCure.patientPart.ui.PatientHomeFragment"
+        android:id="@+id/navigation_doctor_home"
+        android:name="com.example.getPureCure.doctorPart.ui.DoctorHomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_patient_home" >
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_blog"
-        android:name="com.example.getPureCure.patientPart.ui.PatientBlogFragment"
+        android:id="@+id/navigation_doctor_blog"
+        android:name="com.example.getPureCure.doctorPart.ui.DoctorBlogFragment"
         android:label="Blog"
-        tools:layout="@layout/fragment_patient_blog" >
+        tools:layout="@layout/fragment_doctor_blog" >
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_doctors"
-        android:name="com.example.getPureCure.patientPart.ui.PatientDoctorsFragment"
+        android:id="@+id/navigation_doctor_doctors"
+        android:name="com.example.getPureCure.doctorPart.ui.DoctorDoctorsFragment"
         android:label="Doctors"
         tools:layout="@layout/fragment_patient_doctors" >
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_hospitals"
-        android:name="com.example.getPureCure.patientPart.ui.PatientHospitalsFragment"
+        android:id="@+id/navigation_doctor_hospitals"
+        android:name="com.example.getPureCure.doctorPart.ui.DoctorHospitalsFragment"
         android:label="Hospitals"
         tools:layout="@layout/fragment_patient_hospitals" >
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_shop"
-        android:name="com.example.getPureCure.patientPart.ui.PatientShopFragment"
+        android:id="@+id/navigation_doctor_shop"
+        android:name="com.example.getPureCure.doctorPart.ui.DoctorShopFragment"
         android:label="Shop"
         tools:layout="@layout/fragment_patient_shop" >
     </fragment>

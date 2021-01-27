@@ -1,8 +1,4 @@
-package com.example.getPureCure.patientPart;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.getPureCure.doctorPart;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.ParseError;
@@ -31,11 +31,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.getPureCure.MainActivity;
 import com.example.getPureCure.R;
-import com.example.getPureCure.adapters.SmallBlogAdapter;
+import com.example.getPureCure.adapters.BigBlogAdapter;
 import com.example.getPureCure.assets.API;
 import com.example.getPureCure.assets.SavedValues;
 import com.example.getPureCure.objects.Blog;
-import com.example.getPureCure.adapters.BigBlogAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
